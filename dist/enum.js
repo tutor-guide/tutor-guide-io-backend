@@ -1,0 +1,33 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.subject_enum = void 0;
+exports.subject_enum = [
+    "AllSub",
+    "Chi",
+    "Eng",
+    "Math",
+    "LS",
+    "M1",
+    "M2",
+    "ChiLit",
+    "EngLit",
+    "ChiHis",
+    "Econ",
+    "Relig",
+    "Geo",
+    "His",
+    "Tour",
+    "Bio",
+    "Chem",
+    "Phy",
+    "IntSci",
+    "ComSci",
+    "Bafs",
+    "DesApp",
+    "Health",
+    "Ict",
+    "Tech",
+    "Mus",
+    "Va",
+    "Sports",
+];

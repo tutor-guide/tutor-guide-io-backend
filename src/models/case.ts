@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { subject_enum } from "../enum";
 
 const Schema = mongoose.Schema;
 
@@ -6,42 +7,7 @@ const CaseSchema = new Schema({
   status: { type: String, requried: true, enum: ["open", "closed"] },
   gender: { type: String, required: true, enum: ["Male", "Female", "Other"] },
   year_of_study: { type: String, required: true },
-  subject: [
-    {
-      type: String,
-      required: true,
-      enum: [
-        "AllSub",
-        "Chi",
-        "Eng",
-        "Math",
-        "LS",
-        "M1",
-        "M2",
-        "ChiLit",
-        "EngLit",
-        "ChiHis",
-        "Econ",
-        "Relig",
-        "Geo",
-        "His",
-        "Tour",
-        "Bio",
-        "Chem",
-        "Phy",
-        "IntSci",
-        "ComSci",
-        "Bafs",
-        "DesApp",
-        "Health",
-        "Ict",
-        "Tech",
-        "Mus",
-        "Va",
-        "Sports",
-      ],
-    },
-  ],
+  subject: [{ type: Schema.Types.ObjectId, required: true, ref: "Subject" }],
   caseID: { type: Number, required: true },
   language: {
     type: String,
@@ -52,7 +18,7 @@ const CaseSchema = new Schema({
   tuition_location: { type: String, required: true },
   detailed_address: { type: String },
   time_available: { type: String, required: true },
-  num_of_student: { type: Number, required: true},
+  num_of_student: { type: Number, required: true },
   //length in hours 每堂時長
   length: {
     type: Number,

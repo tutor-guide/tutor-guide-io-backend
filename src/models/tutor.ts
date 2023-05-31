@@ -2,41 +2,8 @@ import mongoose from "mongoose";
 
 const Schema = mongoose.Schema;
 
-const subjectSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-    enum: [
-      "AllSub",
-      "Chi",
-      "Eng",
-      "Math",
-      "LS",
-      "M1",
-      "M2",
-      "ChiLit",
-      "EngLit",
-      "ChiHis",
-      "Econ",
-      "Relig",
-      "Geo",
-      "His",
-      "Tour",
-      "Bio",
-      "Chem",
-      "Phy",
-      "IntSci",
-      "ComSci",
-      "Bafs",
-      "DesApp",
-      "Health",
-      "Ict",
-      "Tech",
-      "Mus",
-      "Va",
-      "Sports",
-    ],
-  },
+const resultSchema = new mongoose.Schema({
+  subject:{ type: Schema.Types.ObjectId, required: true, ref: "Subject" },
   dseResult: { type: Number, required: true, min: 0, Max: 7 },
 });
 
@@ -46,7 +13,7 @@ const TutorSchema = new Schema({
   first_name: { type: String },
   last_name: { type: String, required: true },
   tutorID: { type: Number, required: true },
-  subject: [subjectSchema],
+  subject: [resultSchema],
   language: {
     type: String,
     required: true,
