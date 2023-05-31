@@ -7,8 +7,8 @@ const mongoose_1 = __importDefault(require("mongoose"));
 const Schema = mongoose_1.default.Schema;
 const ClientSchema = new Schema({
     gender: { type: String, required: true, enum: ["Male", "Female", "Other"] },
-    first_name: { type: String },
-    last_name: { type: String, required: true },
+    first_name: { type: String, required: true },
+    last_name: { type: String },
     contact_number: { type: String, required: true, selected: false },
     cases: [{ type: Schema.Types.ObjectId, ref: "Case" }],
 });

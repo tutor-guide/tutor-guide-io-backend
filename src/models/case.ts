@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
 const CaseSchema = new Schema({
-    status: {type: String, requried: true, enum: ["open", "closed"]},
+  status: { type: String, requried: true, enum: ["open", "closed"] },
   gender: { type: String, required: true, enum: ["Male", "Female", "Other"] },
   year_of_study: { type: String, required: true },
   subject: [
@@ -42,6 +42,7 @@ const CaseSchema = new Schema({
       ],
     },
   ],
+  caseID: { type: Number, required: true },
   language: {
     type: String,
     required: true,
@@ -51,6 +52,7 @@ const CaseSchema = new Schema({
   tuition_location: { type: String, required: true },
   detailed_address: { type: String },
   time_available: { type: String, required: true },
+  num_of_student: { type: Number, required: true},
   //length in hours 每堂時長
   length: {
     type: Number,

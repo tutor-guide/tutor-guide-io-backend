@@ -7,4 +7,5 @@ mongoose.set("strictQuery", false)
 
 export async function conn(){
     await mongoose.connect(connectionString)
+    console.log("Connected!")
 }

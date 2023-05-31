@@ -3,12 +3,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.conn = void 0;
 const mongoose_1 = __importDefault(require("mongoose"));
-const connectionString = process.env.ATLAS_URI || "";
+// Get arguments passed on command line
+const userArgs = process.argv.slice(2);
+const clients = require("./models/clients");
+// const tutors = require("./models/tutors")
+// const cases = require("./models/cases")
+console.log(clients);
 mongoose_1.default.set("strictQuery", false);
-async function conn() {
-    await mongoose_1.default.connect(connectionString);
-    console.log("Connected!");
-}
-exports.conn = conn;
+const mongoDB = userArgs[0];
+console.log(userArgs);

@@ -9,6 +9,5 @@ const connectionString = process.env.ATLAS_URI || "";
 mongoose_1.default.set("strictQuery", false);
 async function conn() {
     await mongoose_1.default.connect(connectionString);
-    console.log("Connected!");
 }
 exports.conn = conn;

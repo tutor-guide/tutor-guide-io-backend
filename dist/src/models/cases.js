@@ -55,7 +55,6 @@ const CaseSchema = new Schema({
     tuition_location: { type: String, required: true },
     detailed_address: { type: String },
     time_available: { type: String, required: true },
-    num_of_student: { type: Number, required: true },
     //length in hours 每堂時長
     length: {
         type: Number,
