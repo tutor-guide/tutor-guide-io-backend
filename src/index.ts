@@ -4,13 +4,16 @@ import "./loadEnvironment.js"
 import express from "express";
 import { conn } from "./db/conn.js";
 
-const PORT = process.env.PORT || 3001;
+var indexRouter = require("./routes/index")
+// var usersRouter = require("./routes/users")
+const adminRouter = require("./routes/admin")
 
+const PORT = process.env.PORT || 3001;
 const app = express()
 
-app.get("/", (req, res)=> {
-    res.json({message: "Hello World!"})
-})
+app.use("/", indexRouter)
+// app.use("/users", usersRouter)
+app.use("/admin", adminRouter)
 
 // app.use("/cases", cases)
 
