@@ -1,9 +1,9 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
-const Schema = mongoose.Schema;
+
 
 const resultSchema = new mongoose.Schema({
-  subject:{ type: Schema.Types.ObjectId, required: true, ref: "Subject" },
+  subject: { type: Schema.Types.ObjectId, required: true, ref: "Subject" },
   dseResult: { type: Number, required: true, min: 0, Max: 7 },
 });
 
@@ -41,4 +41,6 @@ TutorSchema.virtual("url").get(function () {
   return `/tutor/${this._id}`;
 });
 
-module.exports = mongoose.model("Tutor", TutorSchema);
+const TutorModel = mongoose.model("Tutor", TutorSchema);
+
+export { TutorModel };

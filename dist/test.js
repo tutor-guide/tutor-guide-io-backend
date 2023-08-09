@@ -1,39 +1,108 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (g && (g = 0, op[0] && (_ = 0)), _) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const mongoose_1 = __importDefault(require("mongoose"));
+var mongoose_1 = __importDefault(require("mongoose"));
 // Get arguments passed on command line
-const clientModel = require("./models/client");
-const tutorModel = require("./models/tutor");
-const caseModel = require("./models/case");
-const clients = [];
-const tutors = [];
-const cases = [];
+var clientModel = require("./models/client");
+var tutorModel = require("./models/tutor");
+var caseModel = require("./models/case");
+var clients = [];
+var tutors = [];
+var cases = [];
 mongoose_1.default.set("strictQuery", false);
-const mongoDB = "mongodb+srv://admin:ttg09112020@tutorguide.1qpji6l.mongodb.net/?retryWrites=true&w=majority";
-main().catch((err) => console.log(err));
-async function main() {
-    console.log("connecting to MongoDB");
-    await mongoose_1.default.connect(mongoDB);
-    console.log("Should be connected");
-    await createClients();
-    console.log("Closing connection");
-    mongoose_1.default.connection.close();
-}
-async function createClient(gender, first_Name, contact_number) {
-    const client3 = new clientModel({
-        gender: gender,
-        first_name: first_Name,
-        contact_number: contact_number,
+var mongoDB = "mongodb+srv://admin:ttg09112020@tutorguide.1qpji6l.mongodb.net/?retryWrites=true&w=majority";
+main().catch(function (err) { return console.log(err); });
+function main() {
+    return __awaiter(this, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    console.log("connecting to MongoDB");
+                    return [4 /*yield*/, mongoose_1.default.connect(mongoDB)];
+                case 1:
+                    _a.sent();
+                    console.log("Should be connected");
+                    return [4 /*yield*/, createClients()];
+                case 2:
+                    _a.sent();
+                    console.log("Closing connection");
+                    mongoose_1.default.connection.close();
+                    return [2 /*return*/];
+            }
+        });
     });
-    await client3.save();
-    console.log("done! added first client");
-    clients.push(client3);
-    console.log(`Added Client: ${first_Name}`);
 }
-async function createClients() {
-    console.log('adding client');
-    await createClient('Female', "Wenny", "55414284");
+function createClient(gender, first_Name, contact_number) {
+    return __awaiter(this, void 0, void 0, function () {
+        var client3;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    client3 = new clientModel({
+                        gender: gender,
+                        first_name: first_Name,
+                        contact_number: contact_number,
+                    });
+                    return [4 /*yield*/, client3.save()];
+                case 1:
+                    _a.sent();
+                    console.log("done! added first client");
+                    clients.push(client3);
+                    console.log("Added Client: ".concat(first_Name));
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
+function createClients() {
+    return __awaiter(this, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    console.log('adding client');
+                    return [4 /*yield*/, createClient('Female', "Wenny", "55414284")];
+                case 1:
+                    _a.sent();
+                    return [2 /*return*/];
+            }
+        });
+    });
 }

@@ -1,6 +1,5 @@
 import { NextFunction, Request, Response } from "express"
 
-const User = require("../models/user")
 const asyncHandler = require("express-async-handler")
 
 exports.user_list = asyncHandler(async (req: Request, res: Response, next: NextFunction)=>{

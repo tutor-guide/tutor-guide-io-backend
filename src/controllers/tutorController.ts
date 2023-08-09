@@ -1,10 +1,11 @@
 import { NextFunction, Request, Response } from "express"
+import { TutorModel } from "../models/tutor"
 
-const Tutor = require("../models/tutor")
 const asyncHandler = require('express-async-handler')
 
 exports.tutor_list = asyncHandler(async (req: Request, res: Response, next: NextFunction)=>{
-    res.send("Not Implemented: tutor List")
+    const tutorList = await TutorModel.find({}, "_id")
+    res.json(tutorList)
 })
 
 exports.tutor_detail = asyncHandler(async (req: Request, res: Response, next: NextFunction)=>{

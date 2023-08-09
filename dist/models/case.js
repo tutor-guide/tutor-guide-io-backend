@@ -3,13 +3,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const mongoose_1 = __importDefault(require("mongoose"));
-const Schema = mongoose_1.default.Schema;
-const CaseSchema = new Schema({
+exports.CaseModel = void 0;
+var mongoose_1 = __importDefault(require("mongoose"));
+var mongoose_2 = require("mongoose");
+var CaseSchema = new mongoose_2.Schema({
     status: { type: String, requried: true, enum: ["open", "closed"] },
     gender: { type: String, required: true, enum: ["Male", "Female", "Other"] },
     year_of_study: { type: String, required: true },
-    subject: [{ type: Schema.Types.ObjectId, required: true, ref: "Subject" }],
+    subject: [{ type: mongoose_2.Schema.Types.ObjectId, required: true, ref: "Subject" }],
     caseID: { type: Number, required: true },
     language: {
         type: String,
@@ -25,8 +26,8 @@ const CaseSchema = new Schema({
     length: {
         type: Number,
         required: true,
-        get: (v) => Math.round(v),
-        set: (v) => Math.round(v),
+        get: function (v) { return Math.round(v); },
+        set: function (v) { return Math.round(v); },
     },
     lessons_per_week: { type: Number, required: true },
     min_salary: { type: Number, required: true },
@@ -34,16 +35,17 @@ const CaseSchema = new Schema({
     agreed_salary: { type: Number },
     school: { type: String, required: true },
     preference: { type: String },
-    client: { type: Schema.Types.ObjectId, ref: "Client" },
-    matched_tutor: { type: Schema.Types.ObjectId, ref: "Tutor" },
+    client: { type: mongoose_2.Schema.Types.ObjectId, required: true, ref: "Client" },
+    matched_tutor: { type: mongoose_2.Schema.Types.ObjectId, ref: "Tutor" },
 });
 CaseSchema.virtual("charge").get(function () {
-    let total_amount = 0;
+    var total_amount = 0;
     if (this.agreed_salary)
         total_amount = this.agreed_salary * this.length * this.lessons_per_week;
     return total_amount;
 });
 CaseSchema.virtual("url").get(function () {
-    return `/case/${this._id}`;
+    return "/case/".concat(this._id);
 });
-module.exports = mongoose_1.default.model("Case", CaseSchema);
+var CaseModel = mongoose_1.default.model("Case", CaseSchema);
+exports.CaseModel = CaseModel;

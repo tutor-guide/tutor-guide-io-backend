@@ -21,4 +21,4 @@ app.listen(PORT, () =>{
     console.log(`Server listening on ${PORT}`)
 })
 
-conn().catch((err)=> console.log(err))
+conn()

@@ -1,23 +1,44 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const mongoose_1 = __importDefault(require("mongoose"));
-const Schema = mongoose_1.default.Schema;
-const ClientSchema = new Schema({
+exports.ClientModel = void 0;
+var mongoose_1 = __importStar(require("mongoose"));
+var ClientSchema = new mongoose_1.Schema({
     gender: { type: String, required: true, enum: ["Male", "Female", "Other"] },
     first_name: { type: String, required: true },
     last_name: { type: String },
     contact_number: { type: String, required: true, selected: false },
-    cases: [{ type: Schema.Types.ObjectId, ref: "Case" }],
+    cases: [{ type: mongoose_1.Schema.Types.ObjectId, ref: "Case" }],
 });
 ClientSchema.virtual("full_name").get(function () {
-    let full_name = "";
+    var full_name = "";
     full_name = this.first_name + this.last_name;
     return full_name;
 });
 ClientSchema.virtual("url").get(function () {
-    return `/client/${this._id}`;
+    return "/client/".concat(this._id);
 });
-module.exports = mongoose_1.default.model("Client", ClientSchema);
+var ClientModel = mongoose_1.default.model("Client", ClientSchema);
+exports.ClientModel = ClientModel;

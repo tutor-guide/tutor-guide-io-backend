@@ -1,8 +1,15 @@
-import mongoose from "mongoose";
+import  mongoose, { Schema } from "mongoose";
 
-const Schema = mongoose.Schema;
 
-const ClientSchema = new Schema({
+interface IClient {
+  gender: string;
+  first_name: string;
+  last_name?: string;
+  contact_number: string;
+  cases?: Array<Schema.Types.ObjectId>;
+}
+
+const ClientSchema = new Schema<IClient>({
   gender: { type: String, required: true, enum: ["Male", "Female", "Other"] },
   first_name: { type: String, required: true },
   last_name: { type: String },
@@ -10,15 +17,16 @@ const ClientSchema = new Schema({
   cases: [{ type: Schema.Types.ObjectId, ref: "Case" }],
 });
 
-ClientSchema.virtual("full_name").get(function() {
-    let full_name =""
-    full_name = this.first_name + this.last_name
-    return full_name
-})
+ClientSchema.virtual("full_name").get(function () {
+  let full_name = "";
+  full_name = this.first_name + this.last_name;
+  return full_name;
+});
 
 ClientSchema.virtual("url").get(function () {
-    return `/client/${this._id}`;
-  });
+  return `/client/${this._id}`;
+});
 
-module.exports = mongoose.model("Client", ClientSchema);
-  
+const ClientModel = mongoose.model<IClient>("Client", ClientSchema);
+
+export {ClientModel}

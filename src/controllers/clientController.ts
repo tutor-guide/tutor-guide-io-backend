@@ -1,10 +1,12 @@
 import { NextFunction, Request, Response } from "express"
+import mongoose from "mongoose"
+import { ClientModel } from "../models/client"
 
-const Client = require("../models/client")
 const asyncHandler = require('express-async-handler')
 
 exports.client_list = asyncHandler(async (req: Request, res: Response, next: NextFunction)=>{
-    res.send("Not Implemented: client List")
+    let collection = await ClientModel.find({})
+    res.send(collection)
 })
 
 exports.client_detail = asyncHandler(async (req: Request, res: Response, next: NextFunction)=>{

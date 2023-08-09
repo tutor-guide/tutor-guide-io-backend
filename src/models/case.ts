@@ -1,9 +1,32 @@
 import mongoose from "mongoose";
-import { subject_enum } from "../enum";
+import { Schema } from 'mongoose';
 
-const Schema = mongoose.Schema;
 
-const CaseSchema = new Schema({
+interface ICase {
+  status: string;
+  gender: string;
+  year_of_study: string;
+  subject: string[];
+  caseID: number;
+  language: string;
+  exam_language: string;
+  tuition_location: string;
+  detailed_address?: string;
+  time_available: string;
+  num_of_student: number;
+  //length in hours 每堂時長
+  length: number;
+  lessons_per_week: number;
+  min_salary: number;
+  max_salary: number;
+  agreed_salary?: number;
+  school: string;
+  preference?: string;
+  client: Schema.Types.ObjectId;
+  matched_tutor?: Schema.Types.ObjectId;
+}
+
+const CaseSchema = new Schema<ICase>({
   status: { type: String, requried: true, enum: ["open", "closed"] },
   gender: { type: String, required: true, enum: ["Male", "Female", "Other"] },
   year_of_study: { type: String, required: true },
@@ -32,7 +55,7 @@ const CaseSchema = new Schema({
   agreed_salary: { type: Number },
   school: { type: String, required: true },
   preference: { type: String },
-  client: { type: Schema.Types.ObjectId, ref: "Client" },
+  client: { type: Schema.Types.ObjectId, required: true, ref: "Client" },
   matched_tutor: { type: Schema.Types.ObjectId, ref: "Tutor" },
 });
 
@@ -48,4 +71,6 @@ CaseSchema.virtual("url").get(function () {
   return `/case/${this._id}`;
 });
 
-module.exports = mongoose.model("Case", CaseSchema);
+const CaseModel = mongoose.model("Case", CaseSchema);
+
+export { CaseModel };
