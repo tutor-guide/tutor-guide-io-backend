@@ -8,12 +8,12 @@ const resultSchema = new mongoose.Schema({
 });
 
 const TutorSchema = new Schema({
-  status: { type: String, required: true, enum: ["available", "unavailable"] },
-  gender: { type: String, required: true, enum: ["Male", "Female", "Other"] },
-  first_name: { type: String },
+  first_name: { type: String, required: true },
   last_name: { type: String, required: true },
+  available: { type: Boolean, required: true, default: true },
+  gender: { type: String, required: true, enum: ["Male", "Female", "Other"] },
   tutorID: { type: Number, required: true },
-  subject: [resultSchema],
+  subjects: [resultSchema],
   language: {
     type: String,
     required: true,

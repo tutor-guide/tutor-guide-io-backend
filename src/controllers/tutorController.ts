@@ -17,6 +17,8 @@ exports.tutor_create_get = asyncHandler(async (req: Request, res: Response, next
 })
 
 exports.tutor_create_post = asyncHandler(async (req: Request, res: Response, next: NextFunction)=>{
+    console.log(req.body)
+
     res.send("Not Implemented: tutor Create POST")
 })
 

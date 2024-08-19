@@ -44,7 +44,6 @@ router.get("/tutor/:id", tutor_controller.tutor_detail)
 
 
 //subject routes
-router.get("/subject/create", subject_controller.subject_create_get)
 router.post("/subject/create", subject_controller.subject_create_post)
 router.get("/subject/:id/delete", subject_controller.subject_delete_get)
 router.delete("/subject/:id/delete", subject_controller.subject_delete_post)
