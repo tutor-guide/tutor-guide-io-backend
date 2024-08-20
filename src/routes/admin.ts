@@ -33,7 +33,6 @@ router.get("/user/:id", user_controller.user_detail)
 
 
 //tutor routes
-router.get("/tutor/create", tutor_controller.tutor_create_get)
 router.post("/tutor/create", tutor_controller.tutor_create_post)
 router.get("/tutor/:id/delete", tutor_controller.tutor_delete_get)
 router.delete("/tutor/:id/delete", tutor_controller.tutor_delete_post)

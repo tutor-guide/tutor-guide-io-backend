@@ -10,10 +10,11 @@ const resultSchema = new mongoose.Schema({
 const TutorSchema = new Schema({
   first_name: { type: String, required: true },
   last_name: { type: String, required: true },
+  chi_name: { type: String, required: true },
   available: { type: Boolean, required: true, default: true },
   gender: { type: String, required: true, enum: ["Male", "Female", "Other"] },
   tutorID: { type: Number, required: true },
-  subjects: [resultSchema],
+  exam_result: [resultSchema],
   language: {
     type: String,
     required: true,
