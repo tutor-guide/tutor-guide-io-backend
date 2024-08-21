@@ -22,7 +22,15 @@ exports.tutor_list = asyncHandler(async (req: Request, res: Response, next: Next
 })
 
 exports.tutor_detail = asyncHandler(async (req: Request, res: Response, next: NextFunction)=>{
-    res.send(`Not Implemented: tutor Detail: ${req.params.id}`)
+
+    const tutorDetail = await TutorModel.findById(req.params.id)
+
+    if(!tutorDetail){
+        res.status(404).send(`Tutor with ID ${req.params.id} not found`)
+        return;
+    }
+
+    res.json(tutorDetail)
 })
 
 exports.tutor_create_post = asyncHandler(async (req: Request, res: Response, next: NextFunction)=>{
